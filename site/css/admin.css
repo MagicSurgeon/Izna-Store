@@ -1,0 +1,105 @@
+.action {
+    position: relative;
+    top: 4px;
+}
+
+.action .profile {
+    width: 39px; /* Adjust width for responsiveness */
+    height: 39px; /* Adjust height for responsiveness */
+    border-radius: 60%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.action .profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.action .menu {
+    position: absolute;
+    top: 50px; /* Adjust top position for responsiveness */
+    right: -10px;
+    padding: 10px;
+    background: #fff;
+    width: 200px; /* Adjust width for responsiveness */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: 0.6s;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.action .menu.active {
+    top: 55px; /* Adjust top position for responsiveness */
+    visibility: visible;
+    opacity: 1;
+}
+
+.action .menu::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 15px; /* Adjust right position for responsiveness */
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    transform: rotate(45deg);
+}
+
+.action .menu h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 14px; /* Adjust font size for responsiveness */
+    padding: 10px 0;
+    font-weight: 500;
+    color: #555;
+    line-height: 1.2em;
+}
+
+.action .menu h3 span {
+    font-size: 12px; /* Adjust font size for responsiveness */
+    color: #cecece;
+    font-weight: 400;
+}
+
+.action .menu ul li {
+    list-style: none;
+    padding: 8px 0; /* Adjust padding for responsiveness */
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.action .menu ul li img {
+    max-width: 18px; /* Adjust max-width for responsiveness */
+    margin-right: 8px; /* Adjust margin for responsiveness */
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.action .menu ul li:hover img {
+    opacity: 1;
+}
+
+.action .menu ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.5s;
+    font-size: 14px; /* Adjust font size for responsiveness */
+}
+
+.action .menu ul li:hover a {
+    color: #ff5d94;
+}
+
+/* Add hover effect for profile image */
+.action .profile:hover img {
+    /* Scale up the image on hover */
+    transform: scale(1.2); /* Adjust the scale factor as needed */
+    transition: transform 0.3s ease; /* Add smooth transition */
+}
