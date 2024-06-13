@@ -91,7 +91,7 @@
 				<div class="border-top copyright">
 					<div class="row pt-4">
 						<div class="col-lg-6">
-							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="">Moon_Cat</a><!--  Distributed By <a hreff="">ThemeWagon</a>  License information: https://untree.co/license/  --></p>
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="">Mad_Cat</a><!--  Distributed By <a hreff="">ThemeWagon</a>  License information: https://untree.co/license/  --></p>
 						</div>
 
 						<div class="col-lg-6 text-center text-lg-end">
