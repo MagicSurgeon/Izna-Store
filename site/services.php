@@ -34,7 +34,7 @@ include 'data.php';
 							<div class="intro-excerpt">
 								<h1>Services</h1>
 								<p class="mb-4"></p>
-								<p><a href="shop.php" class="btn btn-secondary me-2">Shop Now</a><!--<a href="#" class="btn btn-white-outline">Explore</a>--></p>
+								<p><a href="shop.php" class="btn btn-secondary me-2">Shop Now</a><a href="journey.php" class="btn btn-white-outline">Explore Our journey</a></p>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -182,7 +182,7 @@ include 'data.php';
 
                                         <div class="author-info">
                                             <div class="author-pic">
-												<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+												<img src="image/icons/person_f2.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Ikra Shaik</h3>
                                             <span class="position d-block mb-3">Happy Customer</span>
@@ -206,7 +206,7 @@ include 'data.php';
 
                                         <div class="author-info">
                                             <div class="author-pic">
-												<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+												<img src="image/icons/person_f4.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Priya Sharma</h3>
                                             <span class="position d-block mb-3">Satisfied Customer</span>
@@ -230,7 +230,7 @@ include 'data.php';
 
                                         <div class="author-info">
                                             <div class="author-pic">
-												<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+												<img src="image/icons/person_m4.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">GaneshWar Reddy</h3>
                                             <span class="position d-block mb-3">Delighted Customer</span>
@@ -254,7 +254,7 @@ include 'data.php';
 
                                         <div class="author-info">
                                             <div class="author-pic">
-												<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+												<img src="image/icons/person_f1.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Sana Syed</h3>
                                             <span class="position d-block mb-3">Satisfied Customer</span>
@@ -278,7 +278,7 @@ include 'data.php';
 
                                         <div class="author-info">
                                             <div class="author-pic">
-												<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+												<img src="image/icons/person_f3.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Ananya Singh</h3>
                                             <span class="position d-block mb-3">Happy Customer</span>
@@ -302,7 +302,7 @@ include 'data.php';
 
                                         <div class="author-info">
                                             <div class="author-pic">
-												<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+												<img src="image/icons/person_m2.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Rahul Kumar</h3>
                                             <span class="position d-block mb-3">Satisfied Customer</span>

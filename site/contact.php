@@ -60,12 +60,19 @@ if(isset($_POST['button_temp'])) {
           position: absolute;
       }
       h2 {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-size: 48px; /* Increase font size to 48px */
-            color: #3b5d50;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
+          text-align: center;
+          font-family: Arial, sans-serif;
+          font-size: 48px;
+          color: #3b5d50;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      h2:hover {
+          color: #f9bf29; 
+          text-shadow: 1px 1px 3px black;
+          transform: scale(1.1);
+      }
     </style>
 	</head>
 
@@ -154,17 +161,17 @@ if(isset($_POST['button_temp'])) {
 
           		<!-- Start Message Section -->
               <h2><b>Write a Message</b></h2>
-              <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+              <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="margin-bottom: 30px;">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
-                      <label class="text-black" for="fname">First name</label>
+                      <label class="text-black" for="fname"><b>First name</b></label>
                       <input type="text" class="form-control" id="fname" name="fname" placeholder="Syed">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <label class="text-black" for="lname">Last name</label>
+                      <label class="text-black" for="lname"><b>Last name</b></label>
                       <input type="text" class="form-control" id="lname" name="lname" placeholder="Riya">
                     </div>
                   </div>
@@ -172,19 +179,19 @@ if(isset($_POST['button_temp'])) {
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
-                      <label class="text-black" for="email">Email address</label>
+                      <label class="text-black" for="email"><b>Email address</b></label>
                       <input type="email" class="form-control" id="email" name="email" placeholder="riya_363@gmail.com">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <label class="text-black" for="lname">Mobile Number</label>
+                      <label class="text-black" for="lname"><b>Mobile Number</label>
                       <input type="text" class="form-control" id="m_num" name="m_num" placeholder="9393939696">
                     </div>
                   </div>
                 </div>
                 <div class="form-group mb-5">
-                  <label class="text-black" for="message">Message</label>
+                  <label class="text-black" for="message"><b>Message</b></label>
                   <textarea name="message" class="form-control" id="message" cols="30" rows="5" placeholder="Welcome to Izna Store's... Your thoughts, queries, and feedback are the colors that shape our journey together. Drop us a line; we're eager to hear from you."></textarea>
                 </div>
 

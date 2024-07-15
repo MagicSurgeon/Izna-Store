@@ -1,3 +1,4 @@
+
 <style>
     /* Custom CSS */
     body {
@@ -51,18 +52,22 @@
         background-color: #e3f2fd;
     }
     .logoo {
-        max-height: 40px; /* Set the maximum height of the logo */
+        max-height: 50px;
     }
      /* Center the navbar text */
     .navbar-brand {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #4CAF50; /* Choose your desired color */
+        color: #4CAF50; 
     }
     /* CSS to automatically open dropdown on hover with transition */
     .dropdown:hover .dropdown-menu {
         display: block;
+    }
+    .profile{
+        display: flex;
+        gap: 20px;
     }
   </style>   
 
@@ -73,9 +78,14 @@
     <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href=""><img src="Images/Logo.png" class="logoo"></a>
+
+            <div class="profile">
+                <?php include 'profile_icon.php'; ?>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            </div>
+
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><i class="bi bi-shop">   I Store</i></h5>
@@ -91,7 +101,7 @@
                             <a class="nav-link" href="dashboard.php"><i class="bi bi-house-heart"> Dashboard</i></a>
                         </li>
 
-                        <li class="nav-item dropdown"> <!-- Add 'dropdown' class to the 'nav-item' -->
+                        <li class="nav-item dropdown"> 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-cart3"> Shop</i>
                             </a>
@@ -102,9 +112,20 @@
                                 <!-- Add more sub-items as needed -->
                             </ul>
                         </li>
-                        <li class="nav-item dropdown"> <!-- Add 'dropdown' class to the 'nav-item' -->
+                        <li class="nav-item dropdown"> 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-substack"> Blog</i> <!-- Change the text to "Blog" -->
+                                <i class="bi bi-cart3"> Category</i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="add_category.php">Add Category</a></li>
+                                <li><a class="dropdown-item" href="view_category.php">View Category</a></li>
+                                <li><a class="dropdown-item" href="inactive_category.php">View Inactive Category</a></li>
+                                <!-- Add more sub-items as needed -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"> 
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-substack"> Blog</i> 
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="add_blog.php">Add Blog</a></li>
@@ -113,9 +134,9 @@
                                 <!-- Add more sub-items as needed -->
                             </ul>
                         </li>
-                        <li class="nav-item dropdown"> <!-- Add 'dropdown' class to the 'nav-item' -->
+                        <li class="nav-item dropdown"> 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-chat-heart"> Contact Us</i> <!-- Change the text to "Blog" -->
+                            <i class="bi bi-chat-heart"> Contact Us</i> 
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="contact_us.php">View Message</a></li>

@@ -47,11 +47,12 @@ include 'data.php';
 							<div class="intro-excerpt">
 								<h1>Shop</h1>
 								<p>Discover the artistry in every detail. Shop unique resin creations that tell a story of passion and individuality.</p>
+								<p><a href="#Explore" class="btn btn-secondary me-2">Explore</a></p>
 							</div>
 						</div>
 						<div class="col-lg-7">
 							<div class="hero-img-wrap">
-								<img src="image/img4.jpg" class="img-fluid" style="width: 680px; height: 400spx;">
+								<img src="image/img4.jpg" class="img-fluid" style="width: 680px; height: auto;">
 							</div>
 						</div>
 					</div>
@@ -62,7 +63,7 @@ include 'data.php';
 		
 
 		<div class="mad3_co-section product-section before-footer-section">
-		    <div class="container">
+		    <div class="container" id="Explore">
 			<div class="row">
 			<?php
 				$query = "SELECT * FROM product WHERE is_active = 1";

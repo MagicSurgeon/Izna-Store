@@ -54,7 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_stmt_execute($update_stmt);
 
     if (mysqli_affected_rows($conn) > 0) {
-        header('Location: view_blog.php');
+        // Show success message with JavaScript alert and redirect
+        echo '<script>alert("Blog details updated successfully."); window.location = "view_blog.php";</script>';
         exit();
     } else {
         echo "No changes made.";
@@ -75,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <!-- <h1 style="color: #28a745; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); padding: 30px; margin-left: 50px; margin-top: 50px;">Edit Item - <?php echo $row['blog_name']; ?></h1> -->
     <div class="container">
     <?php
     if (isset($row)) {
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form class="row g-3" method="POST" enctype="multipart/form-data">
             <!-- Add input fields with the current data for editing -->
             <div class="col-md-3">
-                <label for="blog_name" class="form-label">Blog Tittle</label>
+                <label for="blog_name" class="form-label">Blog Title</label>
                 <input type="text" class="form-control" name="blog_name" value="<?php echo $row['blog_name']; ?>" id="blog_name" required>
             </div>
             <div class="col-md-3">
@@ -135,7 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             console.error( error );
                     } );
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

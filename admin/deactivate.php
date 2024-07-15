@@ -25,5 +25,5 @@ function updateItemStatus($conn, $tables, $idColumn, $statusColumn) {
 }
 
 // Call the function with the array of tables
-updateItemStatus($conn, ['product', 'blog', 'contact_us'], 'id', 'is_active');
+updateItemStatus($conn, ['product', 'blog', 'contact_us', 'categories' ], 'id', 'is_active');
 ?>

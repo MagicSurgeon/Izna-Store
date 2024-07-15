@@ -39,9 +39,9 @@ if(isset($_POST['button_temp'])) {
             mysqli_stmt_bind_param($stmt, "ssssss", $blog_name, $blog_category, $blog_description, $blog_author, $blog_date, $uploadedFilesStr);
 
             if (mysqli_stmt_execute($stmt)) {
-                // Redirect to the same page after successful upload
-                header('Location: ' . $_SERVER["REQUEST_URI"]);
-                exit();
+                // Success message with redirection
+                echo '<script>alert("Blog entry added successfully."); window.location = "' . $_SERVER["REQUEST_URI"] . '";</script>';
+                exit(); // Stop further execution
             } else {
                 echo "Error executing statement: " . mysqli_stmt_error($stmt);
             }
@@ -55,6 +55,7 @@ if(isset($_POST['button_temp'])) {
     }
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">

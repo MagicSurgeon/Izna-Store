@@ -1,17 +1,22 @@
 <?php
 include 'data.php';
 
-if(isset($_POST['button_temp'])){
+// Fetch categories from the database
+$categoryQuery = "SELECT category_name FROM categories";
+$categoryResult = mysqli_query($conn, $categoryQuery);
+
+if (isset($_POST['button_temp'])) {
     $product_name = $_POST['product_name'];
     $product_Category = $_POST['product_Category'];
     $product_mrp = $_POST['product_mrp'];
     $product_Discount = $_POST['product_Discount'];
     $product_sprice = $_POST['product_sprice'];
     $product_description = $_POST['product_description'];
+    $product_date = $_POST['product_date'];
 
     // Use $_FILES for file uploads
-    $product_images = $_FILES['product_images']['name'];
-    
+    $product_images = $_FILES['product_images'];
+
     // Specify the full path to the upload directory
     $uploadDirectory = __DIR__ . '/uploads/'; // Change this to your desired directory
 
@@ -22,10 +27,12 @@ if(isset($_POST['button_temp'])){
 
     // Process each uploaded file
     $uploadedFiles = [];
-    foreach ($product_images as $key => $fileName) {
-        $targetFile = $uploadDirectory . basename($fileName);
+    foreach ($product_images['tmp_name'] as $key => $tmpName) {
+        $fileName = basename($product_images['name'][$key]);
+        $targetFile = $uploadDirectory . $fileName;
 
-        if (move_uploaded_file($_FILES['product_images']['tmp_name'][$key], $targetFile)) {
+        // Move the uploaded file to the destination directory
+        if (move_uploaded_file($tmpName, $targetFile)) {
             // File upload successful
             $uploadedFiles[] = $fileName;
         } else {
@@ -34,48 +41,32 @@ if(isset($_POST['button_temp'])){
     }
 
     // Check if there were any errors during file upload
-if (!empty($uploadedFiles)) {
-    $product_date = $_POST['product_date'];
-
-    $sql = "INSERT INTO product (product_name, product_Category, product_mrp, product_sprice, product_Discount, product_description, product_images, product_date) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
-    $stmt = mysqli_prepare($conn, $sql);
-
-    if ($stmt) {
+    if (!empty($uploadedFiles)) {
         $uploadedFilesStr = implode(', ', $uploadedFiles);
-        mysqli_stmt_bind_param($stmt, "ssssssss", $product_name, $product_Category, $product_mrp, $product_sprice, $product_Discount, $product_description, $uploadedFilesStr, $product_date);
-        
-        if (mysqli_stmt_execute($stmt)) {
-            // Redirect to the same page after successful upload
-            header('Location: ' . $_SERVER["REQUEST_URI"]);
-            exit();
+
+        $sql = "INSERT INTO product (product_name, product_Category, product_mrp, product_sprice, product_Discount, product_description, product_images, product_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $sql);
+
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "ssssssss", $product_name, $product_Category, $product_mrp, $product_sprice, $product_Discount, $product_description, $uploadedFilesStr, $product_date);
+            
+            if (mysqli_stmt_execute($stmt)) {
+                // Success message with redirection
+                echo '<script>alert("Product added successfully."); window.location = "' . $_SERVER["REQUEST_URI"] . '";</script>';
+                exit(); // Stop further execution
+            } else {
+                echo "Error executing statement: " . mysqli_stmt_error($stmt);
+            }
+
+            mysqli_stmt_close($stmt);
         } else {
-            echo "Error executing statement: " . mysqli_stmt_error($stmt);
+            echo "Error preparing statement: " . mysqli_error($conn);
         }
-
-        mysqli_stmt_close($stmt);
     } else {
-        echo "Error preparing statement: " . mysqli_error($conn);
+        echo "No files uploaded or error occurred during upload.";
     }
-} else {
-    echo "No files uploaded or error occurred during upload.";
-}
-
-// Display uploaded images dynamically
-echo '<div class="row">';
-foreach ($uploadedFiles as $fileName) {
-    $imagePath = 'uploads/' . $fileName;
-    if (file_exists($imagePath)) {
-        echo '<div class="col-md-4">';
-        echo '<img src="' . $imagePath . '" class="img-thumbnail mx-auto d-block my-2" style="max-width: 200px; max-height: 200px;">';
-        echo '</div>';
-    } else {
-        echo 'Image file not found: ' . $imagePath;
-    }
-}
-echo '</div>';
 }
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -98,9 +89,15 @@ echo '</div>';
             </div>
             <div class="col-md-3">
                 <label for="product_Category" class="form-label">Category</label>
-                <input type="text" class="form-control" name="product_Category" placeholder="Category" id="product_Category" required>
+                <select class="form-control" name="product_Category" id="product_Category" required>
+                    <option value="">Select Category</option>
+                    <?php
+                    while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
+                        echo '<option value="' . $categoryRow['category_name'] . '">' . $categoryRow['category_name'] . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
-
             <div class="col-md-2">
                 <label for="product_mrp" class="form-label">MRP</label>
                 <input type="text" class="form-control" id="product_mrp" name="product_mrp" placeholder="00.00" required>
@@ -115,7 +112,7 @@ echo '</div>';
             </div>
             <div class="col-md-10">
                 <label for="product_description" class="form-label">Description</label>
-                <textarea class="form-control" id="product_description" name="product_description" cols="15" rows="9" placeholder="Resin earrings are stylish accessories crafted from resin,a durable and versatile material that can be molded into various ..."></textarea>
+                <textarea class="form-control" id="product_description" name="product_description" cols="15" rows="9" placeholder="Resin earrings are stylish accessories crafted from resin, a durable and versatile material that can be molded into various ..."></textarea>
             </div>
             <div class="col-md-4">
                 <label for="product_images" class="form-label">Images</label>
@@ -137,14 +134,14 @@ echo '</div>';
     </div>
     <!-- wysiwyg html editor  -->
     <!-- <script>
-            ClassicEditor
-                    .create( document.querySelector( '#product_description' ) )
-                    .then( editor => {
-                            console.log( editor );
-                    } )
-                    .catch( error => {
-                            console.error( error );
-                    } );
+        ClassicEditor
+            .create(document.querySelector('#product_description'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script> -->
 
     <script>
@@ -161,12 +158,38 @@ echo '</div>';
             }
         }
 
-        // Add event listeners to trigger discount calculation
+        // Add event listeners for input changes to update the discount value
         document.getElementById("product_mrp").addEventListener("input", calculateDiscount);
         document.getElementById("product_sprice").addEventListener("input", calculateDiscount);
-    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        // Image preview script
+        document.getElementById('product_images').addEventListener('change', function(event) {
+            var input = event.target;
+            var imagePreviewContainer = document.getElementById('image-preview-container');
+
+            // Clear existing previews
+            imagePreviewContainer.innerHTML = '';
+
+            // Loop through the selected files and create image previews
+            for (var i = 0; i < input.files.length; i++) {
+                var file = input.files[i];
+
+                if (file.type.startsWith('image/')) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'img-thumbnail mx-auto d-block my-2';
+                        img.style.maxWidth = '200px';
+                        img.style.maxHeight = '200px';
+                        imagePreviewContainer.appendChild(img);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+    </script>
 </body>
 </html>

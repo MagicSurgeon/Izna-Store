@@ -69,9 +69,9 @@ $deadline = time() + (6 * 60 * 60); // 6 hours in seconds
         .outer {
             position: relative;
             background: #3b5d50;
-            height: 730px;
+            height: 553px;
             width: auto;
-            overflow: hidden;
+            /* overflow: hidden; */
             display: flex;
             align-items: center;
         }
@@ -79,7 +79,7 @@ $deadline = time() + (6 * 60 * 60); // 6 hours in seconds
         .img1 {
             position: absolute;
             top: 0px;
-            right: -630px;
+            right: -678px;
             z-index: 0;
             animation-delay: 0.9s;
             max-width: 100%; /* Set the maximum width to 100% */
@@ -221,9 +221,9 @@ $deadline = time() + (6 * 60 * 60); // 6 hours in seconds
                         <b>₹<?php echo $product['product_sprice']; ?></b></a><a class="cart-btn" href="javascript:void(0);" onclick="addToCart(<?php echo $product['id']; ?>)"><i class="cart-icon ion-bag"></i>ADD TO CART</a>
                     </div>   
                 
-                <div class="img1">
-                    <img src="image/<?php echo $product['product_images']; ?>" class="animated fadeInRight" style="width: 610px; height: 610px; ">
-                </div>
+                    <div class="img1">
+                        <img src="image/<?php echo $product['product_images']; ?>" class="animated fadeInRight" style="width: 560px; height: 560px; margin: 139px 0 0 0;">
+                    </div>
             
             <?php else: ?>
                 <div class="outer">
@@ -242,7 +242,7 @@ $deadline = time() + (6 * 60 * 60); // 6 hours in seconds
                 <div class="mad3_co-section product-section before-footer-section">
 		    <div class="container">
 			<div class="row">
-                <h2 style="color: #3b5d50;"><b>Similar Products</b></h2><br><br><br>
+                <h2 style="color: #3b5d50;"><b>Similar Products</b></h2><br><br><br><br><br>
                 <?php
                     $query = "SELECT * FROM product WHERE is_active = 1 AND id != ?";
                     $stmt = mysqli_prepare($conn, $query);
@@ -257,11 +257,11 @@ $deadline = time() + (6 * 60 * 60); // 6 hours in seconds
                             <div class="col-12 col-md-4 mb-5">
                                 <a class="product-item" href="product.php?id=<?php echo $row['id']; ?>">
                                     <span class="discount-tag"><?php echo $row['product_Discount']; ?>% off</span>
-                                    <img src="image/<?php echo $row['product_images']; ?>" class="img-fluid product-thumbnail" style="width: 200px; height: 250px;">
+                                    <img src="image/<?php echo $row['product_images']; ?>" class="img-fluid product-thumbnail" style="width: 250px; height: 250px;">
                                     <h3 class="product-title"><?php echo $row['product_name']; ?></h3>
                                     <strong class="product-price"><s><span style="color:red; font-size: 15px;">₹<?php echo $row['product_mrp']; ?></span></s>&nbsp;&nbsp; <b>₹<?php echo $row['product_sprice']; ?></b></strong>
                                         <span class="icon-cross">
-                                        <img src="image/<?php echo $row['product_images']; ?>" class="img-fluid product-thumbnail" style="width: 200px; height: 250px;">
+                                        <img src="image/icons/cross.svg" class="img-fluid" >
                                     </span>
                                 </a>
                             </div>

@@ -31,7 +31,7 @@ include 'data.php';
 							<div class="intro-excerpt">
 								<h1>Izna's Blog's</h1>
 								<p class="mb-4">"At Izna Store, we don't just create resin art; we craft moments of beauty that linger in the heart long after the purchase."</p>
-								<p><a href="shop.php" class="btn btn-secondary me-2">Shop Now</a><!--<a href="#" class="btn btn-white-outline">Explore</a></p>-->
+								<p><a href="shop.php" class="btn btn-secondary me-2">Shop Now</a><a href="services.php" class="btn btn-white-outline">Our Service's</a></p>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -90,175 +90,175 @@ include 'data.php';
 	
 		<!-- Start Testimonial Slider -->
 		<div class="testimonial-section before-footer-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-7 mx-auto text-center">
-					<h2 class="section-title">Customer Feedback</h2>
-				</div>
-			</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto text-center">
+                <h2 class="section-title">Customer Feedback</h2>
+            </div>
+        </div>
 
-			<div class="row justify-content-center">
-				<div class="col-lg-12">
-					<div class="testimonial-slider-wrap text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="testimonial-slider-wrap text-center">
 
-						<div id="testimonial-nav">
-							<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
-							<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
-						</div>
+                    <div id="testimonial-nav">
+                        <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+                        <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+                    </div>
 
-						<div class="testimonial-slider">
+                    <div class="testimonial-slider">
 
-							<!-- Customer Feedback Item 1 -->
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-lg-8 mx-auto">
+                        <!-- Customer Feedback Item 1 -->
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-										<div class="testimonial-block text-center">
-											<blockquote class="mb-5">
-												<p>&ldquo;Received my order yesterday and I'm absolutely thrilled with the resin frame! The craftsmanship is impeccable and it looks even better in person. Thank you so much!&rdquo;</p>
-											</blockquote>
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;Received my order yesterday and I'm absolutely thrilled with the resin frame! The craftsmanship is impeccable and it looks even better in person. Thank you so much!&rdquo;</p>
+                                        </blockquote>
 
-											<div class="author-info">
-												<div class="author-pic">
-													<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
-												</div>
-												<h3 class="font-weight-bold">Ikra Shaik</h3>
-												<span class="position d-block mb-3">Happy Customer</span>
-											</div>
-										</div>
+                                        <div class="author-info">
+                                            <div class="author-pic">
+												<img src="image/icons/person_f2.png" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">Ikra Shaik</h3>
+                                            <span class="position d-block mb-3">Happy Customer</span>
+                                        </div>
+                                    </div>
 
-									</div>
-								</div>
-							</div>
-							<!-- END Customer Feedback Item 1 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Customer Feedback Item 1 -->
 
-							<!-- Customer Feedback Item 2 -->
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-lg-8 mx-auto">
+                        <!-- Customer Feedback Item 2 -->
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-										<div class="testimonial-block text-center">
-											<blockquote class="mb-5">
-												<p>&ldquo;Just received my customized resin frame and I'm blown away by the quality! It's exactly what I wanted and arrived in perfect condition. Thank you for your excellent service!&rdquo;</p>
-											</blockquote>
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;Just received my customized resin frame and I'm blown away by the quality! It's exactly what I wanted and arrived in perfect condition. Thank you for your excellent service!&rdquo;</p>
+                                        </blockquote>
 
-											<div class="author-info">
-												<div class="author-pic">
-													<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
-												</div>
-												<h3 class="font-weight-bold">Priya Sharma</h3>
-												<span class="position d-block mb-3">Satisfied Customer</span>
-											</div>
-										</div>
+                                        <div class="author-info">
+                                            <div class="author-pic">
+												<img src="image/icons/person_f4.png" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">Priya Sharma</h3>
+                                            <span class="position d-block mb-3">Satisfied Customer</span>
+                                        </div>
+                                    </div>
 
-									</div>
-								</div>
-							</div>
-							<!-- END Customer Feedback Item 2 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Customer Feedback Item 2 -->
 
-							<!-- Customer Feedback Item 3 -->
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-lg-8 mx-auto">
+                        <!-- Customer Feedback Item 3 -->
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-										<div class="testimonial-block text-center">
-											<blockquote class="mb-5">
-												<p>&ldquo;Absolutely loved my resin frame! The detailing is exquisite, and it adds a unique touch to my decor. Highly recommend Izna Stores for their quality craftsmanship.&rdquo;</p>
-											</blockquote>
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;Absolutely loved my resin frame! The detailing is exquisite, and it adds a unique touch to my decor. Highly recommend Izna Stores for their quality craftsmanship.&rdquo;</p>
+                                        </blockquote>
 
-											<div class="author-info">
-												<div class="author-pic">
-													<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
-												</div>
-												<h3 class="font-weight-bold">GaneshWar Reddy</h3>
-												<span class="position d-block mb-3">Delighted Customer</span>
-											</div>
-										</div>
+                                        <div class="author-info">
+                                            <div class="author-pic">
+												<img src="image/icons/person_m4.png" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">GaneshWar Reddy</h3>
+                                            <span class="position d-block mb-3">Delighted Customer</span>
+                                        </div>
+                                    </div>
 
-									</div>
-								</div>
-							</div>
-							<!-- END Customer Feedback Item 3 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Customer Feedback Item 3 -->
 
-							<!-- Customer Feedback Item 4 -->
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-lg-8 mx-auto">
+                        <!-- Customer Feedback Item 4 -->
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-										<div class="testimonial-block text-center">
-											<blockquote class="mb-5">
-												<p>&ldquo;Received my order well within the expected delivery time. The resin frame is stunning, and the customization options allowed me to create a truly personalized piece. Thank you, Izna Stores!&rdquo;</p>
-											</blockquote>
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;Received my order well within the expected delivery time. The resin frame is stunning, and the customization options allowed me to create a truly personalized piece. Thank you, Izna Stores!&rdquo;</p>
+                                        </blockquote>
 
-											<div class="author-info">
-												<div class="author-pic">
-													<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
-												</div>
-												<h3 class="font-weight-bold">Sana Syed</h3>
-												<span class="position d-block mb-3">Satisfied Customer</span>
-											</div>
-										</div>
+                                        <div class="author-info">
+                                            <div class="author-pic">
+												<img src="image/icons/person_f1.png" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">Sana Syed</h3>
+                                            <span class="position d-block mb-3">Satisfied Customer</span>
+                                        </div>
+                                    </div>
 
-									</div>
-								</div>
-							</div>
-							<!-- END Customer Feedback Item 4 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Customer Feedback Item 4 -->
 
-							<!-- Customer Feedback Item 5 -->
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-lg-8 mx-auto">
+                        <!-- Customer Feedback Item 5 -->
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-										<div class="testimonial-block text-center">
-											<blockquote class="mb-5">
-												<p>&ldquo;Thank you, Izna Stores, for the beautiful resin frame! It exceeded my expectations, and the attention to detail is remarkable. Will definitely be shopping here again.&rdquo;</p>
-											</blockquote>
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;Thank you, Izna Stores, for the beautiful resin frame! It exceeded my expectations, and the attention to detail is remarkable. Will definitely be shopping here again.&rdquo;</p>
+                                        </blockquote>
 
-											<div class="author-info">
-												<div class="author-pic">
-													<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
-												</div>
-												<h3 class="font-weight-bold">Ananya Singh</h3>
-												<span class="position d-block mb-3">Happy Customer</span>
-											</div>
-										</div>
+                                        <div class="author-info">
+                                            <div class="author-pic">
+												<img src="image/icons/person_f3.png" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">Ananya Singh</h3>
+                                            <span class="position d-block mb-3">Happy Customer</span>
+                                        </div>
+                                    </div>
 
-									</div>
-								</div>
-							</div>
-							<!-- END Customer Feedback Item 5 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Customer Feedback Item 5 -->
 
-							<!-- Customer Feedback Item 6 -->
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-lg-8 mx-auto">
+                        <!-- Customer Feedback Item 6 -->
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
 
-										<div class="testimonial-block text-center">
-											<blockquote class="mb-5">
-												<p>&ldquo;Received my order today, and I couldn't be happier with my resin frame! It's exactly what I envisioned, and the quality is top-notch. Thank you for the excellent service.&rdquo;</p>
-											</blockquote>
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;Received my order today, and I couldn't be happier with my resin frame! It's exactly what I envisioned, and the quality is top-notch. Thank you for the excellent service.&rdquo;</p>
+                                        </blockquote>
 
-											<div class="author-info">
-												<div class="author-pic">
-													<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
-												</div>
-												<h3 class="font-weight-bold">Rahul Kumar</h3>
-												<span class="position d-block mb-3">Satisfied Customer</span>
-											</div>
-										</div>
+                                        <div class="author-info">
+                                            <div class="author-pic">
+												<img src="image/icons/person_m2.png" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">Rahul Kumar</h3>
+                                            <span class="position d-block mb-3">Satisfied Customer</span>
+                                        </div>
+                                    </div>
 
-									</div>
-								</div>
-							</div>
-							<!-- END Customer Feedback Item 6 -->
-
-							</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Customer Feedback Item 6 -->
 
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 		<!-- End Testimonial Slider -->
 

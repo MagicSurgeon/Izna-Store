@@ -3,9 +3,6 @@ include 'data.php';
 
 // Assuming 'id' is passed as a query parameter in the URL
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$product_sprice = isset($_POST['product_sprice']) ? mysqli_real_escape_string($conn, $_POST['product_sprice']) : '';
-$product_description = isset($_POST['product_description']) ? mysqli_real_escape_string($conn, $_POST['product_description']) : '';
-
 
 // Fetch data from the database based on the product ID
 $query = "SELECT * FROM product WHERE id = ?";
@@ -29,7 +26,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
         // Process and move the uploaded image file
         if(isset($_FILES['new_product_images']) && $_FILES['new_product_images']['error'] == 0) {
-            $target_dir = __DIR__ . '/uploadsx/'; // Adjusted path separator to forward slash
+            $target_dir = __DIR__ . '/uploads/'; // Adjusted path separator to forward slash
             $new_image_name = 'new_image_' . time() . '_' . str_replace(' ', '_', $_FILES['new_product_images']['name']);
             $target_file = $target_dir . $new_image_name;
 
@@ -39,9 +36,14 @@ if ($result && mysqli_num_rows($result) > 0) {
                 $update_stmt = mysqli_prepare($conn, $update_query);
                 mysqli_stmt_bind_param($update_stmt, 'si', $new_image_name, $id);
                 mysqli_stmt_execute($update_stmt);
+
+                $image_updated = true;
             } else {
                 echo "Sorry, there was an error uploading your file.";
+                $image_updated = false;
             }
+        } else {
+            $image_updated = false;
         }
 
         // Update other fields in the database
@@ -58,15 +60,20 @@ if ($result && mysqli_num_rows($result) > 0) {
         mysqli_stmt_bind_param($update_stmt, "sssssssi", $product_name, $product_Category, $product_mrp, $product_sprice, $product_Discount, $product_description, $product_date, $id);
         mysqli_stmt_execute($update_stmt);
 
-
         if (mysqli_affected_rows($conn) > 0) {
-            // Redirect to a success page or display a success message
-            header('Location: view_items_shop.php');
-            exit();
+            // Show success message if any update was successful
+            $success_message = "Product details updated successfully.";
         } else {
-            // Handle the case where no rows were affected (no changes made)
-            echo "No changes made.";
-        }            
+            $success_message = "No changes made.";
+        }
+
+        if ($image_updated) {
+            // Append image update message if image was also updated
+            $success_message .= " Image updated successfully.";
+        }
+
+        // Show combined success message with an okay button
+        echo '<script>alert("' . $success_message . '"); window.location = "view_items_shop.php?id=' . $id . '";</script>';
     }
 } else {
     // Handle the case where no data is found for the given ID
@@ -82,11 +89,9 @@ if ($result && mysqli_num_rows($result) > 0) {
     <title>Edit Item - <?php echo $row['product_name']; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script> -->
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <!-- <h1 style="color: #28a745; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); padding: 30px; margin-left: 50px; margin-top: 50px;">Edit Item - <?php echo $row['product_name']; ?></h1> -->
     <div class="container">
     <?php
     if (isset($row)) {
@@ -131,7 +136,6 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <input type="file" class="form-control" id="new_product_images" name="new_product_images" accept="uploads/*">
             </div>
             
-
             <!-- Hidden field to store the product ID for updating -->
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 
@@ -143,17 +147,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     }
     ?>
 </div>
-<!-- wysiwyg html editor  -->
-<!-- <script>
-            ClassicEditor
-                    .create( document.querySelector( '#product_description' ) )
-                    .then( editor => {
-                            console.log( editor );
-                    } )
-                    .catch( error => {
-                            console.error( error );
-                    } );
-    </script> -->
+
 <script>
         // Function to calculate discount percentage
         function calculateDiscount() {
@@ -171,8 +165,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         // Add event listeners to trigger discount calculation
         document.getElementById("product_mrp").addEventListener("input", calculateDiscount);
         document.getElementById("product_sprice").addEventListener("input", calculateDiscount);
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</script>
+
 </body>
 </html>

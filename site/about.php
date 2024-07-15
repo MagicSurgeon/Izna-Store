@@ -31,7 +31,7 @@
 							<div class="intro-excerpt">
 								<h1>About Us</h1>
 								<p class="mb-4">Crafted for you, curated by us. Explore our collection and bring home a touch of personalized elegance.</p>
-								<p><a href="" class="btn btn-secondary me-2">Shop Now</a><!--<a href="#" class="btn btn-white-outline">Explore</a>--></p>
+								<p><a href="shop.php" class="btn btn-secondary me-2">Shop Now</a><!--<a href="#" class="btn btn-white-outline">Explore</a>--></p>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -210,7 +210,7 @@
 
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+														<img src="image/icons/person_f1.png" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">Shaik Faheem</h3>
 													<span class="position d-block mb-3">CEO, Founder Of Izna Store</span>
@@ -233,7 +233,7 @@
 
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+														<img src="image/icons/person_m1.png" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">Syed Kareem</h3>
 													<span class="position d-block mb-3">Co-Founder</span>
@@ -256,7 +256,7 @@
 
 												<div class="author-info">
 													<div class="author-pic">
-														<img src="image/icons/person-1.png" alt="Maria Jones" class="img-fluid">
+														<img src="image/icons/person_f3.png" alt="Maria Jones" class="img-fluid">
 													</div>
 													<h3 class="font-weight-bold">Mad Cat</h3>
 													<span class="position d-block mb-3">Digital Presence and Website Design</span>

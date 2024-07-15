@@ -20,5 +20,5 @@ function activateItem($conn, $tables, $idColumn, $productId) {
 }
 
 // Call the function with the appropriate parameters
-activateItem($conn, ['product', 'blog', 'contact_us'], 'id', $_GET['id']);
+activateItem($conn, ['product', 'blog', 'contact_us', 'categories'], 'id', $_GET['id']);
 ?>
