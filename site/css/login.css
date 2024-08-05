@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -14,11 +13,12 @@ body {
     width: 100%;
 }
 
+/* Ring Animation */
 .ring {
     position: relative;
-    margin-top: -160px;
+    margin-top: -124px;
     margin-left: 450px;
-    margin-bottom: -19px;
+    margin-bottom: 162px;
     width: 450px;
     height: 450px;
     display: flex;
@@ -39,12 +39,12 @@ body {
 }
 
 .ring i:nth-child(2) {
-    border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+    border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
     animation: animate 4s linear infinite;
 }
 
 .ring i:nth-child(3) {
-    border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+    border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
     animation: animate2 10s linear infinite;
 }
 
@@ -73,6 +73,7 @@ body {
     }
 }
 
+/* Login Form */
 .login {
     position: absolute;
     width: 250px;
@@ -82,13 +83,13 @@ body {
     align-items: center;
     flex-direction: column;
     gap: 20px;
+    margin-top: 100px;
 }
 
 .login h2 {
     font-size: 2em;
     color: #3b5d50;
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; 
-    
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
 .login .inputBx {
@@ -96,7 +97,8 @@ body {
     width: 100%;
 }
 
-.login .inputBx input {
+.login .inputBx input,
+.login .inputBx select {
     position: relative;
     width: 100%;
     padding: 12px 20px;
@@ -108,16 +110,27 @@ body {
     outline: none;
 }
 
+.login .inputBx input::placeholder,
+.login .inputBx select option {
+    color: #3b5d50;
+}
+
+.login .inputBx select {
+    color: #3b5d50;
+}
+
 .login .inputBx input[type="submit"] {
     width: 100%;
-    background: #0078ff;
     background: linear-gradient(45deg, #ff357a, #fff172);
     border: none;
     cursor: pointer;
+    color: #fff;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.login .inputBx input::placeholder {
-    color: rgba(255, 255, 255, 0.75);
+.login .inputBx input[type="submit"]:hover {
+    color: #fff;
+    transform: scale(1.1);
 }
 
 .login .links {
@@ -132,31 +145,20 @@ body {
 .login .links a {
     color: #3b5d50;
     text-decoration: none;
-}
-.login .inputBx input::placeholder {
-    color: #3b5d50; /* Change placeholder color to black */
-}
-
-
-.login .inputBx input[type="submit"] {
-    color: #fff;
-    transition: color 0.3s ease, transform 0.3s ease; 
-}
-
-.login .inputBx input[type="submit"]:hover {
-    color: #fff;
-    transform: scale(1.1);
-    /* text-shadow: -1px -1px 0 #3b5d50, 1px -1px 0 #3b5d50, -1px 1px 0 #3b5d50, 1px 1px 0 #3b5d50;  */
-}
-
-.login .links a {
-    color: #3b5d50; 
-    transition: color 0.3s ease, transform 0.3s ease; 
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .login .links a:hover {
-    color: #3b5d50; 
+    color: #3b5d50;
     transform: scale(1.1);
-    /* text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;  */
 }
 
+/* Warning Popup */
+.warning-popup {
+    position: absolute;
+    background-color: #ffcccc;
+    padding: 0.5px;
+    border: 1.5px solid yellow;
+    border-radius: 9px;
+    font-size: 12px;
+}

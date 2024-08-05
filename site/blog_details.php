@@ -1,5 +1,8 @@
 <?php
-// Include the file that establishes the database connection
+if (session_status() == PHP_SESSION_NONE) {
+	session_start(); 
+  }
+  
 include 'data.php';
 
 // Check if the connection was successful

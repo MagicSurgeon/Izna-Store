@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include 'header.php'; ?>
     <div class="container">
     <?php
     if (isset($row)) {

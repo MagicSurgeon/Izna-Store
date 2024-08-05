@@ -52,17 +52,59 @@ include 'data.php';
 			<div class="container">
 				<div class="row">
 
-					<!-- Start Column 1 -->
-					<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-						<h2 class="mb-4 section-title">Crafted with excellent material.</h2>
-						<p class="mb-4">
-							Resin products encompass a diverse range of items created using epoxy resin as a primary material. These products have gained popularity for their unique aesthetics, durability, and versatility </p>
-						<p><a href="shop.html" class="btn">Explore</a></p>
-					</div> 
-					<!-- End Column 1 -->
 
+        <!-- Start Column 1 -->
+        <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+            <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
+            <p class="mb-4">
+                Resin products encompass a diverse range of items created using epoxy resin as a primary material. These products have gained popularity for their unique aesthetics, durability, and versatility.
+            </p>
+            <p><a href="shop.html" class="btn">Explore</a></p>
+        </div>
+        <!-- End Column 1 -->
+
+        <!-- Start Column 2 -->
+        <div class="col-md-12 col-lg-9">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <a class="product-item" href="#">
+                        <img src="admin_images/Resin_Coaster.png" class="img-fluid product-thumbnail" style="width: 100%; height: 200px; object-fit: cover;">
+                        <h3 class="product-title">Resin Coasters</h3>
+                        <strong class="product-price"><s><span style="color:red; font-size: 15px;">₹ 800</span></s>&nbsp;&nbsp; <b>₹ 600</b></strong>
+                        <span class="icon-cross">
+                            <img src="image/icons/cross.svg" class="img-fluid">
+                        </span>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a class="product-item" href="#">
+                        <img src="admin_images/Resin_Name_Plates3.png" class="img-fluid product-thumbnail" style="width: 100%; height: 200px; object-fit: cover;">
+                        <h3 class="product-title">Resin Name Plates</h3>
+                        <strong class="product-price"><s><span style="color:red; font-size: 15px;">₹ 1,200</span></s>&nbsp;&nbsp; <b>₹ 900</b></strong>
+                        <span class="icon-cross">
+                            <img src="image/icons/cross.svg" class="img-fluid">
+                        </span>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a class="product-item" href="#">
+                        <img src="admin_images/Resin_Shelves1.png" class="img-fluid product-thumbnail" style="width: 100%; height: 200px; object-fit: cover;">
+                        <h3 class="product-title">Resin Shelves</h3>
+                        <strong class="product-price"><s><span style="color:red; font-size: 15px;">₹ 4,000</span></s>&nbsp;&nbsp; <b>₹ 3,000</b></strong>
+                        <span class="icon-cross">
+                            <img src="image/icons/cross.svg" class="img-fluid">
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+
+
+					<!-- End Column 2 -->
+						<!-- php list top 3 products -->
 					<!-- Start Column 2 -->
-					<div class="col-12 col-md-12 col-lg-9 mb-5 mb-md-0">
+					<!-- <div class="col-12 col-md-12 col-lg-9 mb-5 mb-md-0">
 						<div class="row">
 							<?php
 								$query = "SELECT * FROM product WHERE is_active = 1 ORDER BY id DESC LIMIT 3";
@@ -87,8 +129,7 @@ include 'data.php';
 								}
 							?>
 						</div>
-					</div>
-
+					</div> -->
 					<!-- End Column 2 -->
 				</div>
 			</div>

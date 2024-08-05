@@ -46,10 +46,166 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="css/tiny-slider.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link rel='stylesheet' href='css/login.css'>
   <title>Thank for shoping</title>
   <style>
     /* Your CSS styles here */
+    /* Global Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: cursive;
+    }
+
+    body {
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        min-width: 100vh;
+        width: 100%;
+    }
+
+    /* Ring Animation */
+    .ring {
+        position: relative;
+        margin-top: -124px;
+        margin-left: 450px;
+        margin-bottom: 162px;
+        width: 450px;
+        height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ring i {
+        position: absolute;
+        inset: 0;
+        border: 2px solid white;
+        transition: 0.5s;
+    }
+
+    .ring i:nth-child(1) {
+        border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+        animation: animate 6s linear infinite;
+    }
+
+    .ring i:nth-child(2) {
+        border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+        animation: animate 4s linear infinite;
+    }
+
+    .ring i:nth-child(3) {
+        border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+        animation: animate2 10s linear infinite;
+    }
+
+    .ring:hover i {
+        border: 6px solid var(--clr);
+        filter: drop-shadow(0 0 20px var(--clr));
+    }
+
+    @keyframes animate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes animate2 {
+        0% {
+            transform: rotate(360deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    /* Login Form */
+    .login {
+        position: absolute;
+        width: 250px;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 100px;
+    }
+
+    .login h2 {
+        font-size: 2em;
+        color: #3b5d50;
+        text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    }
+
+    .login .inputBx {
+        position: relative;
+        width: 100%;
+    }
+
+    .login .inputBx input,
+    .login .inputBx select {
+        position: relative;
+        width: 100%;
+        padding: 12px 20px;
+        background: transparent;
+        border: 2px solid #3b5d50;
+        border-radius: 40px;
+        font-size: 1.2em;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .login .inputBx input::placeholder,
+    .login .inputBx select option {
+        color: #3b5d50;
+    }
+
+    .login .inputBx select {
+        color: #3b5d50;
+    }
+
+    .login .inputBx input[type="submit"] {
+        width: 100%;
+        background: linear-gradient(45deg, #ff357a, #fff172);
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .login .inputBx input[type="submit"]:hover {
+        color: #fff;
+        transform: scale(1.1);
+    }
+
+    .login .links {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .login .links a {
+        color: #3b5d50;
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .login .links a:hover {
+        color: #3b5d50;
+        transform: scale(1.1);
+    }
+
+    /* Warning Popup */
     .warning-popup {
         position: absolute;
         background-color: #ffcccc;
@@ -57,20 +213,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         border: 1.5px solid yellow;
         border-radius: 9px;
         font-size: 12px;
-    }
-    .login{
-        margin-top: 100px;
-    }
-    .ring {
-    position: relative;
-    margin-top: -160px;
-    margin-left: 450px;
-    margin-bottom: 119px;
-    width: 450px;
-    height: 450px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     }
 </style>
 </head>
@@ -111,6 +253,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="inputBx">
                                 <input type="text" id="m_num" name="m_num" placeholder="Mobile Number">
+                            </div>
+                            <div class="inputBx">
+                                <select id="gender" name="gender">
+                                    <option value="" disabled selected>Gender</option>
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer_not_to_say">Prefer not to say</option>
+                                </select>
                             </div>
                             <div class="inputBx">
                                 <input type="text" id="gmail" name="gmail" placeholder="Gmail">

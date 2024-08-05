@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'data.php'; 
+include 'data.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $emailOrMobileOrUsername = mysqli_real_escape_string($conn, $_POST['emailOrMobileOrUsername']);
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashedPassword = $row['password'];
 
     if (password_verify($password, $hashedPassword)) {
-      $_SESSION['user_id'] = $row['id'];
+      $_SESSION['user_id'] = $row['admin_id'];
       $_SESSION['username'] = $row['username'];
 
       $response = array('success' => true);
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       function loginUser() {
-        const emailOrMobileOrUsername = document.getElementById('email').value;
+        const emailOrMobileOrUsername = document.getElementById('emailOrMobileOrUsername').value;
         const password = document.getElementById('password').value;
 
         if (emailOrMobileOrUsername.trim() === '' || password.trim() === '') {
@@ -74,7 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 confirmButtonText: 'Let\'s Go',
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = 'dashboard.php';
+                  console.log("Redirecting to header.php"); // Debugging statement
+                  window.location.href = 'header.php';
                 }
               });
             } else {
@@ -92,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         xhr.send(params);
       }
 
-      document.getElementById('email').addEventListener('keypress', function (e) {
+      document.getElementById('emailOrMobileOrUsername').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
           loginUser();
         }
@@ -113,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="bottom"></div>
   <div class="center">
     <h2>Please Sign In</h2>
-    <input type="email" id="email" placeholder="Email">
+    <input type="text" id="emailOrMobileOrUsername" placeholder="Email/Mobile/Username">
     <input type="password" id="password" placeholder="Password">
     <div class="signup-link">
       <p>Don't have an account? <a href="signup.php"><b>Sign up here</b></a>.</p>

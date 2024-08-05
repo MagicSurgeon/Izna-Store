@@ -22,7 +22,7 @@ include 'data.php';
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="css/tiny-slider.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <title>'s profile</title>
+  <title>Profile</title>
 
 </head>
 
@@ -65,16 +65,16 @@ include 'data.php';
               <?php include 'profile_card.php'; ?>
           		<!-- End card Section -->	
 
-              <h1>Address</h1><br>
+              <!-- <h1>Address</h1><br> -->
               <!-- Start address Section -->
-              <?php include 'address_card.php'; ?>
+              <!-- <?php include 'address_card.php'; ?> -->
               <!-- End address Section -->
 
             </div>
           </section>
         </div>
       </div>
-
+    
 		<!-- Start Footer Section -->
 		<?php include 'footer.php'; ?>
 		<!-- End Footer Section -->	

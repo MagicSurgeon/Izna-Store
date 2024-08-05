@@ -3,7 +3,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start(); 
 }
 
-
 include 'data.php'; 
 
 // Fetch count of items in the cart from the t_cart table
@@ -15,23 +14,42 @@ if ($count_result && mysqli_num_rows($count_result) > 0) {
     $count_row = mysqli_fetch_assoc($count_result);
     $cart_count = $count_row['cart_count'];
 }
-$sql = "SELECT name, m_num, gmail FROM new_user";
-$result = $conn->query($sql);
 
+$user = null;
+$profile_photo = null;
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT name, m_num, gmail, gender, profile_photo FROM new_user WHERE user_id='$user_id'";
+    $result = $conn->query($sql);
+    $user = $result->fetch_assoc();
+
+    if ($user) {
+        if (!empty($user['profile_photo'])) {
+            $profile_photo = $user['profile_photo'];
+        } else {
+            if ($user['gender'] == 'female') {
+                $profile_photo = 'https://wallpapers.com/images/hd/pretty-profile-pictures-2tkqwa8t2rolierf.jpg';
+            } else {
+                $profile_photo = 'https://img.freepik.com/premium-photo/anime-boy-reading-book-with-cat-beside-him_864588-27636.jpg';
+            }
+        }
+    }
+}
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <link rel="shortcut icon" href="image\logo.png">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="css/tiny-slider.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/admin.css" rel="stylesheet">
-    
-
-
+</head>
+<body>
 <!-- Start Header/Navigation -->
-<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="navigation bar">
-
+<nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="navigation bar">
     <div class="container">
         <a class="navbar-brand" href="">Izna Store<span>.</span></a>
 
@@ -65,81 +83,65 @@ $result = $conn->query($sql);
                 </li>
             </ul>
 
-            <!--Start Profile Section -->
+            <!-- Start Profile Section -->
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-            <?php
-               
-                if( isset($_SESSION['user_id']) ){
-            ?>
-                <li>
-                    <div class="action">
-                        <div class="profile" onclick="menuToggle();">
-                            <img src="image/img4.jpg" alt="profile">
+                <?php if (isset($_SESSION['user_id']) && $user): ?>
+                    <li>
+                        <div class="action">
+                            <div class="profile" onclick="menuToggle();">
+                                <img src="<?php echo $profile_photo; ?>" alt="profile">
+                            </div>
+                            <div class="menu">
+                                <h3><span>Welcome</span> <br> <b><?php echo $user['name']; ?></b></h3>
+                                <ul>
+                                    <li><img src="image/profile_icons/team.png"><a href="my_profile.php">My Profile</a></li>
+                                    <li><img src="image/profile_icons/edit_c.png"><a href="edit_profile.php">Edit Profile</a></li>
+                                    <li><img src="image/profile_icons/online-shopping.png"><a href="orders.php">Orders</a></li>
+                                    <li><img src="image/profile_icons/settings.png"><a href="#">Settings</a></li>
+                                    <li><img src="image/profile_icons/question.png"><a href="#">Help</a></li>
+                                    <li><img src="image/profile_icons/log-out.png"><a href="logout.php">Logout</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="menu">
-                        <?php while($row = $result->fetch_assoc()): ?>
-                            <h3><span>Wellcome</span> <br> <b><?php echo $row['name']; ?></b></h3>
-                        <?php endwhile; ?>
-                            
-                            <ul>
-                                <li><img src="image/profile_icons/team.png"><a href="my_profile.php">My Profile</a></li>
-                                <li><img src="image/profile_icons/edit_c.png"><a href="#">Edit Profile</a></li>
-                                <li><img src="image/profile_icons/online-shopping.png"><a href="orders.php">Orders</a></li>
-                                <li><img src="image/profile_icons/settings.png"><a href="#">Settings</a></li>
-                                <li><img src="image/profile_icons/question.png"><a href="#">Help</a></li>
-                                <li><img src="image/profile_icons/log-out.png"><a href="logout.php">Logout</a></li>
-                            </ul>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <div class="action">
+                            <div class="profile" onclick="menuToggle();">
+                                <img src="image/icons/user.svg" alt="profile" style="width: auto; height: 30px; margin-left: 7px;">
+                            </div>
+                            <div class="menu">
+                                <h3>Login first<br><span>Order Fast</span></h3>
+                                <ul>
+                                    <li><img src="image/profile_icons/key.png"><a href="login.php">Login</a></li>
+                                    <li><img src="image/profile_icons/new-customer.png"><a href="signup.php">Sign-up</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <?php
-                } else {
-                ?>
-                <li>
-                    <div class="action">
-                        <div class="profile" onclick="menuToggle();">
-                            <img src="image/icons/user.svg" alt="profile" style="width: auto; height: 30px; margin-left: 7px; margin-top: px;">
-                        </div>
-                        <div class="menu">
-                            <h3>Login first<br><span>Order Fast</span></h3>
-                            <ul>
-                                <li><img src="image/profile_icons/key.png"><a href="login.php">Login</a></li>
-                                <li><img src="image/profile_icons/new-customer.png"><a href="signup.php">Sign-up</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            <?php
-             }
-            ?>
-            <!--End Profile Section -->
-            
-            <!--Start Cart Section -->
-            <?php
-               if( isset($_SESSION['user_id']) ){
-           ?>
-            <li style="position: relative; top:4px;">
-                <a class="nav-link" href="cart.php">
-                    <img src="image/icons/cart.svg" style="width: auto; height: 30px; margin-top: -5px;">
-                    <?php if ($cart_count > 0): ?>
-                        <span style="position: absolute; top: 3px; right: 3px; transform: translate(50%, -50%); background-color: #FFD700; color: #3b5d50; border-radius: 50%; width: 19px; height: 19px; line-height: 19px; text-align: center; font-size: 13px;"><?php echo $cart_count; ?></span>
-                    <?php endif; ?>
-                </a>
-            </li>
-            <?php
-                } else {
-                ?>
-                <li></li>
-            <?php
-             }
-            ?>
-            <!--End Cart Section -->
-        </ul>
+                    </li>
+                <?php endif; ?>
+                <!-- End Profile Section -->
+
+                <!-- Start Cart Section -->
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li style="position: relative; top:4px;">
+                        <a class="nav-link" href="cart.php">
+                            <img src="image/icons/cart.svg" style="width: auto; height: 30px; margin-top: -5px;">
+                            <?php if ($cart_count > 0): ?>
+                                <span style="position: absolute; top: 3px; right: 3px; transform: translate(50%, -50%); background-color: #FFD700; color: #3b5d50; border-radius: 50%; width: 19px; height: 19px; line-height: 19px; text-align: center; font-size: 13px;"><?php echo $cart_count; ?></span>
+                            <?php endif; ?>
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <li></li>
+                <?php endif; ?>
+                <!-- End Cart Section -->
+            </ul>
         </div>
     </div>
-        
 </nav>
 <!-- End Header/Navigation -->
+
 <script>
     // JavaScript function to toggle the dropdown menu
     function menuToggle() {
@@ -173,3 +175,5 @@ $result = $conn->query($sql);
         }
     });
 </script>
+</body>
+</html>

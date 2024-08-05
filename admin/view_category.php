@@ -1,6 +1,3 @@
-<?php
-include 'data.php';
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,60 +6,71 @@ include 'data.php';
     <title>View Categories</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles/button.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
-    <h1 style="color: #28a745; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); padding: 30px; margin-left: 50px; margin-top: 50px;">View Categories</h1>
-    <div class="container">
-        <table class="table table-success table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">S.NO</th>
-                    <th scope="col">Category Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Date Created</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $query = "SELECT * FROM categories WHERE is_active = 1";
-                $data = mysqli_query($conn, $query);
-                $result = mysqli_num_rows($data);
+    <?php include 'header.php' ?>
 
-                if ($result) {
-                    $count = 1;
-                    while ($row = mysqli_fetch_array($data)) {
-                ?>
-                        <tr>
-                            <td><?php echo $count++; ?></td>
-                            <td><?php echo $row['category_name']; ?></td>
-                            <td><?php echo $row['category_description']; ?></td>
-                            <td><?php echo $row['is_active'] ? 'Active' : 'Inactive'; ?></td>
-                            <td><?php echo $row['created_at']; ?></td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Action
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="edit_category.php?id=<?php echo $row['id']; ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="deactivate.php?id=<?php echo $row['id']; ?>">Deactivate</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                <?php
-                    }
-                } else {
-                    echo "<tr><td colspan='6'>No categories found</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
+<div class="head">
+    <h1>View Categories</h1>
+    <div class="buttons">
+        <button><a href="add_Category.php">Add Category</a></button>
+        <button><a href="inactive_Category.php">View Inactive Categories</a></button>
+        <button><a href="dashboard.php">Home</a></button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</div>
+<div class="container">
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th scope="col">S.NO</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            include 'data.php';
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script></body>
+            $query = "SELECT * FROM categories WHERE is_active = 1";
+            $data = mysqli_query($conn, $query);
+            $result = mysqli_num_rows($data);
+
+            if ($result) {
+                $count = 1;
+                while ($row = mysqli_fetch_array($data)) {
+            ?>
+                    <tr>
+                        <td><?php echo $count++; ?></td>
+                        <td><?php echo htmlspecialchars($row['category_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['category_description']); ?></td>
+                        <td><?php echo $row['is_active'] ? 'Active' : 'Inactive'; ?></td>
+                        <td><?php echo htmlspecialchars($row['created_at']); ?></td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Action
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="edit_category.php?id=<?php echo $row['id']; ?>">Edit</a></li>
+                                    <li><a class="dropdown-item" href="deactivate.php?id=<?php echo $row['id']; ?>">Deactivate</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+            <?php
+                }
+            } else {
+                echo "<tr><td colspan='6'>No categories found</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
 </html>

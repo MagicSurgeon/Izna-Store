@@ -1,5 +1,14 @@
 <?php
+session_start();
 include 'data.php';
+
+// Check if the user_id is set in the session
+if (!isset($_SESSION['user_id'])) {
+    die("User not logged in.");
+}
+
+// Retrieve admin_id from session
+$admin_id = $_SESSION['user_id'];
 
 if (isset($_POST['add_category'])) {
     // Form data retrieval
@@ -7,11 +16,11 @@ if (isset($_POST['add_category'])) {
     $category_description = $_POST['category_description'];
 
     // Database interaction
-    $sql = "INSERT INTO categories (category_name, category_description, is_active) VALUES (?, ?, 1)";
+    $sql = "INSERT INTO categories (category_name, category_description, is_active, admin_id) VALUES (?, ?, 1, ?)";
     $stmt = mysqli_prepare($conn, $sql);
 
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "ss", $category_name, $category_description);
+        mysqli_stmt_bind_param($stmt, "sss", $category_name, $category_description, $admin_id);
 
         if (mysqli_stmt_execute($stmt)) {
             // Success message with redirection
@@ -28,7 +37,6 @@ if (isset($_POST['add_category'])) {
 }
 ?>
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,7 +47,7 @@ if (isset($_POST['add_category'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include 'header.php'; ?>
     <h1 style="color: #28a745; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); padding: 30px; margin-left: 50px; margin-top: 50px;">Add New Category</h1>
     <div class="container">
         <form class="row g-3" method="POST" id="category_form">
@@ -49,7 +57,7 @@ if (isset($_POST['add_category'])) {
             </div>
             <div class="col-md-12">
                 <label for="category_description" class="form-label">Description</label>
-                <textarea class="form-control" id="category_description" name="category_description" cols="55" rows="3" placeholder="Enter category description..."required></textarea>
+                <textarea class="form-control" id="category_description" name="category_description" cols="55" rows="3" placeholder="Enter category description..." required></textarea>
             </div>
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary" name="add_category">Submit</button>

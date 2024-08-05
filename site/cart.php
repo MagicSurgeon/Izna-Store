@@ -2,6 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
   session_start(); 
 }
+
 include 'data.php'; // Include file to fetch product data
 $total = 0; // Initialize total variable
 

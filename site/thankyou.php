@@ -1,5 +1,9 @@
 <?php
-// Include your database connection file here
+if (session_status() == PHP_SESSION_NONE) {
+  session_start(); 
+}
+
+
 include 'data.php';
 
 // Perform deletion of data from t_cart table

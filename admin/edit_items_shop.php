@@ -91,7 +91,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include 'header.php'; ?>
     <div class="container">
     <?php
     if (isset($row)) {

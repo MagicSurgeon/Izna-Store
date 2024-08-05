@@ -1,22 +1,16 @@
 <?php
 include 'data.php';
 
-// Check if ID is provided in the URL
 if(isset($_GET['id'])) {
-    // Sanitize the ID to prevent SQL injection
     $id = mysqli_real_escape_string($conn, $_GET['id']);
     
-    // Query to retrieve the message based on ID
     $query = "SELECT * FROM contact_us WHERE id = '$id'";
     $result = mysqli_query($conn, $query);
 
-    // Check if query was successful
     if ($result && mysqli_num_rows($result) > 0) {
-        // Fetch the first row of the result set
         $row = mysqli_fetch_assoc($result);
 
-        // Print the contents of $row to check if data is fetched properly
-        // var_dump($row); // or print_r($row)
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +21,7 @@ if(isset($_GET['id'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include 'header.php'; ?>
     <h1 style="color: #28a745; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); padding: 30px; margin-left: 50px; margin-top: 50px;">View Message</h1>
     <div class="container">
     <form>

@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); 
-}   
+  }
+   
 // Include your database connection
 include 'data.php';
 

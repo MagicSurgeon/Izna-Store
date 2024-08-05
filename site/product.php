@@ -1,7 +1,9 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); 
-}
+  }
+  
+
 include 'data.php'; 
 
 // Get the product ID from the query parameter

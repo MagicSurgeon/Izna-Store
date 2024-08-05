@@ -1,5 +1,11 @@
 <?php
+session_start();
 include 'data.php';
+
+// Check if the user_id is set in the session
+if (!isset($_SESSION['user_id'])) {
+    die("User not logged in.");
+}
 
 // Fetch categories from the database
 $categoryQuery = "SELECT category_name FROM categories";
@@ -17,8 +23,10 @@ if (isset($_POST['button_temp'])) {
     // Use $_FILES for file uploads
     $product_images = $_FILES['product_images'];
 
-    // Specify the full path to the upload directory
-    $uploadDirectory = __DIR__ . '/uploads/'; // Change this to your desired directory
+    // Specify the base upload directory
+    $uploadBaseDirectory = __DIR__ . '/site/admin_images/';
+    $folderName = uniqid('product_', true); // Generate a unique folder name
+    $uploadDirectory = $uploadBaseDirectory . $folderName . '/';
 
     // Create the directory if it doesn't exist
     if (!file_exists($uploadDirectory)) {
@@ -44,12 +52,16 @@ if (isset($_POST['button_temp'])) {
     if (!empty($uploadedFiles)) {
         $uploadedFilesStr = implode(', ', $uploadedFiles);
 
-        $sql = "INSERT INTO product (product_name, product_Category, product_mrp, product_sprice, product_Discount, product_description, product_images, product_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        // Include admin_id from session
+        $admin_id = $_SESSION['user_id'];
+
+        // Insert product details into the database
+        $sql = "INSERT INTO product (product_name, product_Category, product_mrp, product_sprice, product_Discount, product_description, folder_path, product_date, admin_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
 
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "ssssssss", $product_name, $product_Category, $product_mrp, $product_sprice, $product_Discount, $product_description, $uploadedFilesStr, $product_date);
-            
+            mysqli_stmt_bind_param($stmt, "sssssssss", $product_name, $product_Category, $product_mrp, $product_sprice, $product_Discount, $product_description, $folderName, $product_date, $admin_id);
+
             if (mysqli_stmt_execute($stmt)) {
                 // Success message with redirection
                 echo '<script>alert("Product added successfully."); window.location = "' . $_SERVER["REQUEST_URI"] . '";</script>';
@@ -67,7 +79,6 @@ if (isset($_POST['button_temp'])) {
     }
 }
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -76,10 +87,9 @@ if (isset($_POST['button_temp'])) {
     <title>Add Items Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script> -->
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include 'header.php'; ?>
     <h1 style="color: #28a745; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); padding: 30px; margin-left: 50px; margin-top: 50px;">Add New Item</h1>
     <div class="container">
         <form class="row g-3" method="POST" enctype="multipart/form-data" id="product_form">
@@ -132,17 +142,7 @@ if (isset($_POST['button_temp'])) {
         <!-- Display uploaded images dynamically -->
         <div id="image-preview-container" class="mt-4"></div>
     </div>
-    <!-- wysiwyg html editor  -->
-    <!-- <script>
-        ClassicEditor
-            .create(document.querySelector('#product_description'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script> -->
+    
 
     <script>
         // Function to calculate discount percentage
@@ -158,38 +158,35 @@ if (isset($_POST['button_temp'])) {
             }
         }
 
-        // Add event listeners for input changes to update the discount value
+        // Add event listeners to input fields
         document.getElementById("product_mrp").addEventListener("input", calculateDiscount);
         document.getElementById("product_sprice").addEventListener("input", calculateDiscount);
 
-        // Image preview script
+        // Handle image previews
         document.getElementById('product_images').addEventListener('change', function(event) {
-            var input = event.target;
-            var imagePreviewContainer = document.getElementById('image-preview-container');
+            var files = event.target.files;
+            var previewContainer = document.getElementById('image-preview-container');
+            previewContainer.innerHTML = '';
 
-            // Clear existing previews
-            imagePreviewContainer.innerHTML = '';
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var reader = new FileReader();
 
-            // Loop through the selected files and create image previews
-            for (var i = 0; i < input.files.length; i++) {
-                var file = input.files[i];
+                reader.onload = function(e) {
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '100px';
+                    img.style.height = '100px';
+                    img.style.marginRight = '10px';
+                    previewContainer.appendChild(img);
+                };
 
-                if (file.type.startsWith('image/')) {
-                    var reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        var img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.className = 'img-thumbnail mx-auto d-block my-2';
-                        img.style.maxWidth = '200px';
-                        img.style.maxHeight = '200px';
-                        imagePreviewContainer.appendChild(img);
-                    };
-
-                    reader.readAsDataURL(file);
-                }
+                reader.readAsDataURL(file);
             }
         });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9QhFAG5Yy2w5tA91jW9nF2EoK3Q6I2XH5Jf1eD6M+4b5+FhCLO/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-SDDK0x7Kzh0AnbmbmgcLsMKy7pF+d5yLlZXMuVtD1FPrzN0VfapgMkGSA0Pe4fz5/" crossorigin="anonymous"></script>
 </body>
 </html>

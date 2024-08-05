@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); 
-}   
+  }
+    
 include 'data.php';
 
 // Check if the form is submitted

@@ -99,7 +99,7 @@ include 'data.php';
 		</div>
 		</div>
 		<!-- End Why Choose Us Section -->
-
+		
 		<!-- Start Product Section -->
 		<div class="product-section">
 			<div class="container">
@@ -148,7 +148,9 @@ include 'data.php';
 		</div>
 		<!-- End Product Section -->
 
-		
+		<!-- Start Header/Navigation -->
+		<?php include 'timeline.html'; ?>
+		<!-- End Header/Navigation -->
 
 		<!-- Start Testimonial Slider -->
 		<div class="testimonial-section before-footer-section">

@@ -1,11 +1,3 @@
-<?php
-include 'data.php';
-
-// Fetch inactive items from the database
-$query = "SELECT * FROM contact_us WHERE is_active = 0";
-$data = mysqli_query($conn, $query);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +5,17 @@ $data = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seen Message's</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/button.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include 'header.php'; ?>
     <!-- Display inactive items here -->
-    <h1 style="color: #28a745; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); padding: 30px; margin-left: 50px; margin-top: 50px;">Seen Message's</h1>
+    <div class="head">
+        <h1>Seen Message's</h1>
+        <div class="buttons">
+            <button><a href="contact_us.php">View Message's</a></button>
+        </div>
+    </div>
     <div class="container">
             <table class="table">
                 <thead>
@@ -33,6 +31,8 @@ $data = mysqli_query($conn, $query);
                 </thead>
                 <tbody>
                     <?php
+                    include 'data.php';
+                    
                     $query = "SELECT * FROM contact_us WHERE is_active = 0";
                     $data = mysqli_query($conn, $query);
                     $result = mysqli_num_rows($data);

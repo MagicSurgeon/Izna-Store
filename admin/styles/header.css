@@ -1,0 +1,83 @@
+/* Custom CSS */
+body {
+    background-color: #f8f9fa; /* Light background color */
+}
+
+.container {
+    margin-top: 16px; /* Centers the container */
+    background-color: #f3f7f7; /* Light blue container */
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Ensure all form controls have the same width */
+.form-control {
+    width: 100%;
+}
+
+/* Custom button styles */
+.btn-primary {
+    background-color: #007bff; /* Primary blue color */
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #004085;
+}
+
+/* MRP width */
+#inputAddress2 {
+    width: 100%;
+}
+
+#inputCity,
+#inputState,
+#inputZip {
+    width: 60%;
+}
+
+/* Center align submit and reset buttons */
+.btn-group {
+    display: flex;
+    justify-content: center;
+}
+
+/* Navbar CSS */
+.navbar {
+    background-color: #e3f2fd; /* Light Blue background color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4CAF50;
+}
+
+.navbar-brand img {
+    max-height: 50px;
+}
+
+/* Dropdown menu visibility */
+.dropdown-menu {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Profile section alignment */
+.profile {
+    display: flex;
+    gap: 20px;
+    margin-right: 1rem;
+}
+

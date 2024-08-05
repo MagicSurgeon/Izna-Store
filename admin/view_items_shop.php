@@ -1,7 +1,3 @@
-<?php
-include 'data.php';
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,10 +6,18 @@ include 'data.php';
     <title>View Items Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles/button.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
-    <h1 style="color: #28a745; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); padding: 30px; margin-left: 50px; margin-top: 50px;">View Items</h1>
+    <?php include 'header.php'; ?>
+    <div class="head">
+        <h1>View Items</h1>
+        <div class="buttons">
+            <button><a href="add_items_shop.php">Add Product</a></button>
+            <button><a href="inactive_items_shop.php">View Inactive Product</a></button>
+            <button><a href="dashboard.php">Home</a></button>
+        </div>
+    </div>
     <div class="container">
             <table class="table table-success table-striped">
                 <thead>
@@ -31,6 +35,8 @@ include 'data.php';
                 </thead>
                 <tbody>
                     <?php
+                    include 'data.php';
+
                     $query = "SELECT * FROM product WHERE is_active = 1";
                     $data = mysqli_query($conn, $query);
                     $result = mysqli_num_rows($data);
@@ -76,7 +82,6 @@ include 'data.php';
               </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
